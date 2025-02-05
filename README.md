@@ -12,7 +12,7 @@ SKC is a lightweight command-line tool designed to help developers automate comm
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/skc.git
+   git clone https://github.com/Shravanch19/skchelp.git
    ```
 2. Run the `setup.bat` script for easy access, making SKC globally accessible:
    ```sh
