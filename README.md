@@ -14,11 +14,29 @@ SKC is a lightweight command-line tool designed to help developers automate comm
    ```sh
    git clone https://github.com/Shravanch19/skchelp.git
    ```
-2. Run the `setup.bat` script for easy access, making SKC globally accessible:
-   ```sh
-   setup.bat
-   ```
-3. Use `skc` in any desired directory to execute commands.
+
+2. **Open the System Properties Window**
+   - Press `Win + R` to open the Run dialog.
+   - Type `sysdm.cpl` and press `Enter`.
+
+3. **Access Environment Variables**
+   - In the System Properties window, navigate to the **Advanced** tab.
+   - Click on the **Environment Variables** button.
+
+4. **Edit the PATH Variable**
+   - Under **System Variables** or **User Variables**, locate the `Path` variable.
+   - Select `Path` and click on the **Edit** button.
+
+5. **Add a New Directory**
+   - Click the **New** button.
+   - Enter the full path to the directory you want to add (e.g., `C:\your\new\path`).
+   - Click **OK** to save the changes.
+
+6. **Apply the Changes**
+   - Close all dialogs by clicking **OK**.
+   - Restart your terminal (Command Prompt, PowerShell) or your system to apply the changes.
+
+7. Use `skc` in any desired directory to execute commands.
 
 ## Usage
 Run `skc` followed by a task name to execute the corresponding action.
@@ -68,3 +86,4 @@ Developed by Shravan Chaturvedi.
 ## Portfolio
 Check out my portfolio [here](https://portfolio-shravan-s-projects-f0f07f2c.vercel.app/).
 
+# How to Add a Directory to the System PATH Variable
