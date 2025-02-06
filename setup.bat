@@ -1,25 +1,23 @@
 @echo off
 setlocal
 
-:: Define the new path you want to add
-set "NEW_PATH1=%cd%"
-set "NEW_PATH2=%cd%\scripts"
+:: Get the directory where this script is located
+set "SCRIPT_DIR=%~dp0"
+set "SCRIPT_DIR=%SCRIPT_DIR:~0,-1%"  REM Remove trailing slash
 
-:: Get the current PATH variable
-for /f "tokens=2,*" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path') do set "OLD_PATH=%%b"
+:: Get the current user PATH
+for /f "tokens=2,*" %%A in ('reg query "HKCU\Environment" /v Path ^| findstr Path') do set CURRENT_PATH=%%B
 
-:: Check if the path is already in PATH to avoid duplication
-echo %OLD_PATH% | findstr /I /C:"%NEW_PATH%" >nul
-if not errorlevel 1 (
-    echo Path is already present.
+:: Check if the path is already in PATH
+echo %CURRENT_PATH% | findstr /I /C:"%SCRIPT_DIR%" >nul
+if %errorlevel%==0 (
+    echo Path is already in the environment variables.
     exit /b
 )
 
-:: Add the new path to the system PATH variable
-set "UPDATED_PATH=%OLD_PATH%;%NEW_PATH1%"
-set "UPDATED_PATH=%UPDATED_PATH%;%NEW_PATH2%"
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v Path /t REG_EXPAND_SZ /d "%UPDATED_PATH%" /f
+:: Add script directory to PATH
+setx Path "%CURRENT_PATH%;%SCRIPT_DIR%"
 
-echo New path added successfully. Please restart your system or log out and log back in for changes to take effect.
-
-endlocal
+echo %SCRIPT_DIR% added to PATH successfully! Restart required for changes to take effect.
+pause
+exit /b
